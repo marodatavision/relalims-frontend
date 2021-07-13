@@ -1,0 +1,1 @@
+export const navLinkStyle = "rounded shadow-md bg-blue-500 hover:bg-blue-700 text-white uppercase px-5 py-3";
