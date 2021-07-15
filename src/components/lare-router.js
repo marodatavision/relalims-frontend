@@ -1,4 +1,5 @@
-import React from "react";
+import { Button, TextField } from "@material-ui/core";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 import MainDesc from "./logo/main-desc";
+import { userLogin } from "./services/AuthServices";
 import { navLinkStyle } from './styles/nav-styles';
 
 export default function LareRouter() {
@@ -50,7 +52,25 @@ export default function LareRouter() {
 }
 
 function Home() {
-    return <h2>Home</h2>;
+
+    const [loginData, setLoginData] = useState({});
+
+    const onChange = (e, loginDataType) => {
+        setLoginData({...loginData, [loginDataType]: e.target.value});
+    }
+
+    const onClick = () => {
+        userLogin(loginData);
+    }
+
+    return (
+        <div>
+            <div className="text-xl font-bold">Login</div>
+            <TextField onChange={e => onChange(e, "email")} variant="outlined" type="text" label="Email"/>
+            <TextField onChange={e => onChange(e, "password")} variant="outlined" type="password" label="Passwort" />
+            <Button onClick={onClick} variant="contained" color="primary">Login</Button>
+        </div>
+    );
 }
 
 function About() {
